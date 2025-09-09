@@ -165,18 +165,19 @@ RESET_DETECTED: Topic commit-log recreated (oldId=... newId=...). Seeking to beg
 ## Deliverables
 
 ### Repository Links
-- **Kafka Fork**: [Fork apache/kafka](https://github.com/apache/kafka) and create PR with `mm2-fault-tolerance.patch`
+- **GitHub Repository**: [https://github.com/ShivramSriramulu/Tiger_MM2](https://github.com/ShivramSriramulu/Tiger_MM2)
+- **Kafka Fork**: [https://github.com/ShivramSriramulu/kafka](https://github.com/ShivramSriramulu/kafka) (Fork of [Apache Kafka](https://github.com/apache/kafka))
 - **Pull Request Title**: `MM2: fail-fast on truncation + auto-recover on topic reset (MirrorSourceTask)`
 - **Patch Location**: `mm2/patches/mm2-fault-tolerance.patch` (≤500 LOC)
 
 ### Docker Hub Images
-- **Enhanced MM2**: `yourdocker/enhanced-mm2:4.0.0` (Pre-built Kafka with fault-tolerance modifications)
-- **Commit Log Producer**: `yourdocker/commitlog-producer:latest` (CLI for generating test events)
+- **Enhanced MM2**: [shivramsriramulu/enhanced-mm2:latest](https://hub.docker.com/r/shivramsriramulu/enhanced-mm2) (Pre-built Kafka with fault-tolerance modifications)
+- **Commit Log Producer**: [shivramsriramulu/commitlog-producer:latest](https://hub.docker.com/r/shivramsriramulu/commitlog-producer) (CLI for generating test events)
 
 ### Setup Instructions
 ```bash
 # Clone repository
-git clone <your-repo>/mm2-dr-demo
+git clone https://github.com/ShivramSriramulu/Tiger_MM2.git
 cd mm2-dr-demo
 
 # Start environment
