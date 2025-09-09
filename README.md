@@ -9,7 +9,7 @@ This project enhances Apache Kafka MirrorMaker 2 (MM2) for mission-critical data
   - **Fail-fast on truncation** (no silent data loss)
   - **Graceful recovery on topic reset** (auto-resubscribe from beginning)
 - Kafka version: v4.0.0 (KRaft)
-- Target environment: Mac M1 (Apple Silicon), Docker multi-arch images
+
 
 ## Background & Motivation
 
@@ -76,7 +76,7 @@ We simulate a real commit-log/WAL setup:
    - Truncation simulation (60s retention; fail-fast logs)
    - Topic reset simulation (delete/recreate; auto-recover logs)
 
-## How to Run (Fast Path, Mac M1)
+## How to Run 
 
 **Requires**: Docker Desktop, Git, Bash
 
@@ -161,6 +161,21 @@ TRUNCATION_DETECTED: Source offsets are out of range ...
 RESET_DETECTED: Topic commit-log recreated (oldId=... newId=...). Seeking to beginning.
 ```
 (MM2 continues replicating new events.)
+
+
+
+## Sync vs. Async Replication (and what we used)
+
+| Aspect | Synchronous (ISR, in-cluster) | Asynchronous (MM2, cross-cluster) |
+|--------|-------------------------------|-----------------------------------|
+| Where | Same cluster replicas | Separate DR cluster |
+| Producer latency | Higher (wait for replicas) | Lower (mirror later) |
+| Consistency | Stronger within cluster | Eventual across clusters |
+| RPO | ~0 in-cluster | >0 (depends on lag/retention) |
+| RTO | Fast in-cluster | Depends on DR state/lag |
+| Used here | Not applicable | Yes (MM2) |
+
+**Why async MM2**: best fit for cross-region DR. The fail-fast and auto-recover features make RPO/RTO transparent and operations predictable.
 
 ## Deliverables
 
