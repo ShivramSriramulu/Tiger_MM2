@@ -1,4 +1,4 @@
-# Kafka MirrorMaker 2 — Fault-Tolerant DR Demo (Mac M1 Ready)
+# Kafka MirrorMaker 2 — Fault-Tolerant DR Demo 
 
 ## Project Overview
 
